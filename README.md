@@ -14,12 +14,9 @@ A fresh React + TypeScript storefront and admin dashboard powered by hosted Supa
 ## Supabase
 Project ref: `gxbrixisxmzilbizhnem`
 
-Create `.env.local` from `.env.example` and set:
-```
-VITE_SUPABASE_URL=https://gxbrixisxmzilbizhnem.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=<publishable-key>
-```
-Never put a secret/service-role key in the frontend.
+Production is already configured in `.env.production` with the hosted Supabase project URL and its browser-safe publishable key. For local overrides, create `.env.local` from `.env.example`.
+
+Never put a secret/service-role key in frontend code.
 
 ## Run
 ```
@@ -33,7 +30,7 @@ npm run build
 ```
 
 ## Production hosting
-Supabase is the backend (Postgres/Auth/Storage/API), not the static React frontend host. Deploy the Vite `dist` output to a static host such as Cloudflare Pages, Netlify or Vercel and configure the two VITE environment variables there. Point `legitlk.com` to that frontend deployment.
+Supabase is the production backend (Postgres/Auth/Storage/Data API), not the static React frontend host. Supabase's current documentation explicitly says Edge Functions are for APIs/data processing rather than serving frontend HTML. Deploy the Vite `dist` output to a frontend host such as Vercel, Netlify or Cloudflare Pages and point the site domain to that deployment.
 
 ## First admin
-Create a user in Supabase Auth, then assign that user's UUID the `admin` role in `public.user_roles`. RLS prevents ordinary authenticated users from managing the store.
+There are currently no Supabase Auth users. Create/sign up the first user, then assign that user's UUID the `admin` role in `public.user_roles`. RLS prevents ordinary authenticated users from managing the store.
